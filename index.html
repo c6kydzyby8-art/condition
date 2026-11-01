@@ -1,0 +1,34 @@
+<!-- File: index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CONDITION">
+<meta name="theme-color" content="#E4E2DC">
+<title>CONDITION</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #E4E2DC; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  .msg { padding: 40px 20px; color: #7A7872; font: 500 12px/1.6 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .1em; }
+</style>
+</head>
+<body>
+<script>
+  // URL の # の後ろに、Apps Script の .../exec の URL を付けて開く
+  (function () {
+    var url = decodeURIComponent(location.hash.slice(1));
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec/.test(url)) {
+      document.body.innerHTML = '<div class="msg">NO TARGET<br>URL の # の後ろに .../exec の URL を付けて開く</div>';
+      return;
+    }
+    var f = document.createElement('iframe');
+    f.src = url;
+    document.body.appendChild(f);
+  })();
+</script>
+</body>
+</html>
